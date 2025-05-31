@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://your-domain.com/schemas/jh-multi-lib-schematic-schema.json",
+  "$id": "https://raw.githubusercontent.com/JihedHmida/multi-lib-schematic/main/src/jh-multi-lib-schematic/schema.json",
   "title": "JH Multi Lib Options",
   "type": "object",
   "properties": {
