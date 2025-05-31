@@ -1,28 +1,71 @@
-# Getting Started With Schematics
+# jh-multi-lib-schematic
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+[![npm version](https://badge.fury.io/js/jh-multi-lib-schematic.svg)](https://badge.fury.io/js/jh-multi-lib-schematic)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-### Testing
+**jh-multi-lib-schematic** is an Angular schematic designed to quickly scaffold modular multi-library Angular projects with configurable suffix generation and global schematic settings.
 
-To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
+---
 
-Check the documentation with
+## Features
+
+- Creates a modular library structure with proper prefixes and path aliases.
+- Applies global schematic configurations for components, services, pipes, guards, directives, and more.
+- Updates `tsconfig.json` paths automatically to reflect new libraries.
+- Optional suffix generation for Angular schematic artifacts like `Component`, `Service`, etc.
+- Customizable schematic behavior via CLI flags.
+
+---
+
+## Installation
+
+Install via npm and add to your Angular workspace:
 
 ```bash
-schematics --help
+ng add jh-multi-lib-schematic
 ```
 
-### Unit Testing
+---
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
+## Usage
 
-### Publishing
+Customize the schematic behavior using the following parameter:
 
-To publish, simply do:
+| Parameter           | Type    | Description                                                                                             | Default |
+|---------------------|---------|---------------------------------------------------------------------------------------------------------|---------|
+| `--generateSuffixes` | boolean | If true, generated Angular schematics will include suffixes (e.g., Component, Service). If false, suffixes are omitted. | false   |
+
+### Example:
 
 ```bash
-npm run build
-npm publish
+ng add jh-multi-lib-schematic --generateSuffixes
 ```
 
-That's it!
+If you omit the flag, suffixes will not be added by default.
+
+---
+
+## What happens after running?
+
+- Modular library structure created with proper prefixes and aliases.
+- Global schematics configuration applied for components, services, pipes, guards, interceptors, directives, and more.
+- `tsconfig.json` paths updated to reflect the new libraries.
+- Optionally, suffixes appended to generated schematic artifacts if `--generateSuffixes` is true.
+
+---
+
+## Contributing
+
+Feel free to fork the repository and submit pull requests for improvements or new features.
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Support
+
+If you have any questions or issues, please open an issue on GitHub or contact the author directly.

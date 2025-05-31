@@ -1,7 +1,7 @@
 {
   "name": "jh-multi-lib-schematic",
   "version": "0.0.1",
-  "description": "AA personal schematic to quickly scaffold Angular projects with a modular multi-library architecture.",
+  "description": "A personal schematic to quickly scaffold Angular projects with a modular multi-library architecture.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"

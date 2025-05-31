@@ -52,10 +52,11 @@ function getSchematicsConfig(skipSelector: boolean, shouldAddSuffixes: boolean) 
 
 export function ngAdd(options: { generateSuffixes?: boolean }): Rule {
   const shouldAddSuffixes = options.generateSuffixes === true;
-
+  const skipSelector = true;
   return (_tree: Tree, _context: SchematicContext) => {
     return chain([
       updateNewProjectRoot(),
+      applySchematicsConfigToProjects(skipSelector, shouldAddSuffixes),
       ...LIBRARIES.map(createLibrary),
       setLibrarySchematics(shouldAddSuffixes),
       updateTsconfigPaths(),
@@ -82,7 +83,36 @@ function updateNewProjectRoot(): Rule {
     return tree;
   };
 }
+function applySchematicsConfigToProjects(skipSelector: boolean, shouldAddSuffixes: boolean): Rule {
+  return (tree: Tree) => {
+    const configPath = '/angular.json';
+    if (!tree.exists(configPath)) {
+      throw new SchematicsException('Could not find angular.json');
+    }
 
+    const buffer = tree.read(configPath);
+    if (!buffer) {
+      throw new SchematicsException('Could not read angular.json');
+    }
+
+    const json = JSON.parse(buffer.toString());
+
+    const schematicsConfig = getSchematicsConfig(skipSelector, shouldAddSuffixes);
+
+    for (const projectName of Object.keys(json.projects)) {
+      if (!json.projects[projectName].schematics) {
+        json.projects[projectName].schematics = {};
+      }
+      json.projects[projectName].schematics = {
+        ...json.projects[projectName].schematics,
+        ...schematicsConfig,
+      };
+    }
+
+    tree.overwrite(configPath, JSON.stringify(json, null, 2));
+    return tree;
+  };
+}
 function createLibrary(lib: { name: string; prefix: string }): Rule {
   return chain([
     externalSchematic('@schematics/angular', 'library', {
