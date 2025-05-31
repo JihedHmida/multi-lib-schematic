@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "A personal schematic to quickly scaffold Angular projects with a modular multi-library architecture.",
+      "factory": "./jh-multi-lib-schematic/index#ngAdd",
+      "schema": "./jh-multi-lib-schematic/schema.json"
+    }
+  }
+}

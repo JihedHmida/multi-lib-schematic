@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "JHMultiLibSchematic",
+  "title": "JH Multi Lib Options",
+  "type": "object",
+  "properties": {
+    "generateSuffixes": {
+      "type": "boolean",
+      "description": "Control whether generated libraries should include Angular schematic suffixes (e.g., 'Component', 'Service').",
+      "default": false
+    }
+  }
+}
